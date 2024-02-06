@@ -13,25 +13,32 @@
         Return Generator.Next(Min, Max)
     End Function
     Private Sub Game(player As Integer)
-        lblDice.Text = ""
-        Dim intValue As Integer = GetRandom(1, 7)
-        picDice.Visible = True
-        picDice.Image = dices.Images.Item(intValue - 1)
         Dim intScore As Integer
         Dim prevScore As Integer
 
+        ' Clean message label
+        lblDice.Text = ""
+
+        ' Get random number of Dice and show picture of dice with current number
+        Dim intValue As Integer = GetRandom(1, 7)
+        picDice.Visible = True
+        picDice.Image = dices.Images.Item(intValue - 1)
+
+        ' Saving current player score for local iterator
         If player = 1 Then
             intScore = intPlayer1Score
         Else
             intScore = intPlayer2Score
         End If
 
+        ' Condition for checking first player who throw 6 to start game
         If intValue = 6 And firstAttempt Then
             firstAttempt = False
             lblDice.Text = "Player " & player & " starts with " & intValue
         ElseIf firstAttempt And intValue < 6 Then
             lblDice.Text = "Try again"
         End If
+        ' Condition for default game
         If intValue <= 6 And firstAttempt = False Then
             firstAttempt = False
             Dim strCounterName As String
@@ -39,6 +46,7 @@
                 strCounterName = "lblPointer" + intScore.ToString
                 Me.Controls(strCounterName).Visible = False
             End If
+            ' If was spared point with both players, left behind player which moving is next
             If intPlayer1Score > 0 And intPlayer2Score > 0 And intPlayer1Score = intPlayer2Score Then
                 strCounterName = "lblPointer" + intPlayer1Score.ToString
                 If (player = 1) Then
@@ -48,10 +56,13 @@
                 End If
                 Me.Controls(strCounterName).Visible = True
             End If
+
+            ' Counting next step
             intScore = intScore + intValue
 
             lblOperation.Text = ""
 
+            ' Checking all moves for possible equality
             For index = 0 To boardMoves.Length - 1
                 ' Navigating on array
                 Dim line As String = boardMoves(index).ToString()
@@ -68,6 +79,7 @@
                     lblOperation.Text = "Player " & player & " Moved from " & prevScore & " to " & intScore
                 End If
             Next
+            ' If game still on going move our figure's
             If intScore < fieldLength Then
                 lblDice.Text = "Player " & player & " Move"
                 strCounterName = "lblPointer" + intScore.ToString
@@ -82,6 +94,8 @@
                     Me.Controls(strCounterName).BackgroundImage = figures.Images.Item(2)
                 End If
                 Me.Controls(strCounterName).Visible = True
+
+                ' If our score 100 or out of order we flash screen for Winner
             ElseIf intScore >= fieldLength Then
                 lblDice.Text = "Player " & player & " is Winner!"
                 Me.Controls("lblPointer100").BackgroundImage = figures.Images.Item(player - 1)
@@ -91,6 +105,7 @@
         End If
     End Sub
 
+    ' Update all statuses
     Private Sub gameUpdateStatus()
         btnPlayer1.Enabled = False
         btnPlayer1.Visible = False
@@ -99,6 +114,8 @@
         btnRepeat.Visible = True
         btnQuit.Visible = True
     End Sub
+
+    ' Click event for Player1 button
     Private Sub btnPlayer1_Click(sender As Object, e As EventArgs) Handles btnPlayer1.Click
         btnPlayer1.Enabled = False
         btnPlayer1.Visible = False
@@ -112,6 +129,8 @@
             btnQuit.Visible = False
         End If
     End Sub
+
+    ' Click event for Player2 button
     Private Sub btnPlayer2_Click(sender As Object, e As EventArgs) Handles btnPlayer2.Click
         btnPlayer2.Enabled = False
         btnPlayer2.Visible = False
@@ -126,11 +145,15 @@
         End If
     End Sub
 
+
+    ' Click event for Repeat game button
     Private Sub btnRepeat_Click(sender As Object, e As EventArgs) Handles btnRepeat.Click
+        ' Show Player buttons again
         btnPlayer1.Enabled = True
         btnPlayer1.Visible = True
         btnPlayer2.Enabled = True
         btnPlayer2.Visible = True
+
         ' Clean game fields
         If intPlayer1Score <= 100 Then
             Me.Controls("lblPointer" + intPlayer1Score.ToString).Visible = False
@@ -150,6 +173,7 @@
         picDice.Visible = False
     End Sub
 
+    ' Click event for Quit game button
     Private Sub btnQuit_Click(sender As Object, e As EventArgs) Handles btnQuit.Click
         End
     End Sub
