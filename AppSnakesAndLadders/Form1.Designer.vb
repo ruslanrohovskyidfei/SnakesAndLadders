@@ -132,6 +132,8 @@ Partial Class Form1
         Me.dices = New System.Windows.Forms.ImageList(Me.components)
         Me.picDice = New System.Windows.Forms.PictureBox()
         Me.lblDice = New System.Windows.Forms.Label()
+        Me.btnRepeat = New System.Windows.Forms.Button()
+        Me.btnQuit = New System.Windows.Forms.Button()
         CType(Me.gameBoard, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picDice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -1324,6 +1326,32 @@ Partial Class Form1
         Me.lblDice.TabIndex = 94
         Me.lblDice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'btnRepeat
+        '
+        Me.btnRepeat.BackColor = System.Drawing.Color.Yellow
+        Me.btnRepeat.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnRepeat.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRepeat.Location = New System.Drawing.Point(805, 295)
+        Me.btnRepeat.Name = "btnRepeat"
+        Me.btnRepeat.Size = New System.Drawing.Size(136, 38)
+        Me.btnRepeat.TabIndex = 96
+        Me.btnRepeat.Text = "Repeat?"
+        Me.btnRepeat.UseVisualStyleBackColor = False
+        Me.btnRepeat.Visible = False
+        '
+        'btnQuit
+        '
+        Me.btnQuit.BackColor = System.Drawing.Color.Red
+        Me.btnQuit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnQuit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnQuit.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        Me.btnQuit.Location = New System.Drawing.Point(805, 581)
+        Me.btnQuit.Name = "btnQuit"
+        Me.btnQuit.Size = New System.Drawing.Size(136, 38)
+        Me.btnQuit.TabIndex = 97
+        Me.btnQuit.Text = "Quit"
+        Me.btnQuit.UseVisualStyleBackColor = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1331,6 +1359,8 @@ Partial Class Form1
         Me.BackColor = System.Drawing.SystemColors.ControlDarkDark
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1050, 654)
+        Me.Controls.Add(Me.btnQuit)
+        Me.Controls.Add(Me.btnRepeat)
         Me.Controls.Add(Me.picDice)
         Me.Controls.Add(Me.lblDice)
         Me.Controls.Add(Me.lblPointer91)
@@ -1437,6 +1467,7 @@ Partial Class Form1
         Me.Controls.Add(Me.btnPlayer1)
         Me.Controls.Add(Me.lblOperation)
         Me.Controls.Add(Me.gameBoard)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "Form1"
         Me.Text = "Snakes & Ladders - Board game"
         CType(Me.gameBoard, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1552,4 +1583,6 @@ Partial Class Form1
     Friend WithEvents dices As ImageList
     Friend WithEvents picDice As PictureBox
     Friend WithEvents lblDice As Label
+    Friend WithEvents btnRepeat As Button
+    Friend WithEvents btnQuit As Button
 End Class

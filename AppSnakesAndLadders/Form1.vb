@@ -27,8 +27,7 @@
 
         If intValue = 6 And firstAttempt Then
             firstAttempt = False
-            intScore = intValue
-            lblDice.Text = "Player " & player & " starts with " & intScore
+            lblDice.Text = "Player " & player & " starts with " & intValue
         ElseIf firstAttempt And intValue < 6 Then
             lblDice.Text = "Try again"
         End If
@@ -61,7 +60,7 @@
                     lblOperation.Text = "Player " & player & " Moved from " & prevScore & " to " & intScore
                 End If
             Next
-            If intScore < fieldLength Then
+            If intScore <= fieldLength Then
                 strCounterName = "lblPointer" + intScore.ToString
                 If player = 1 Then
                     Me.Controls(strCounterName).BackgroundImage = figures.Images.Item(0)
@@ -74,8 +73,10 @@
                     Me.Controls(strCounterName).BackgroundImage = figures.Images.Item(2)
                 End If
                 Me.Controls(strCounterName).Visible = True
-            ElseIf intScore >= fieldLength Then
+            ElseIf intScore > fieldLength Then
                 lblDice.Text = "Player " & player & " is Winner!"
+                Me.Controls("lblPointer100").BackgroundImage = figures.Images.Item(player - 1)
+                Me.Controls("lblPointer100").Visible = True
                 gameFinished = True
             End If
         End If
@@ -89,9 +90,13 @@
             btnPlayer1.Visible = False
             btnPlayer2.Enabled = False
             btnPlayer2.Visible = False
+            btnRepeat.Visible = True
+            btnQuit.Visible = True
         Else
             btnPlayer2.Enabled = True
             btnPlayer2.Visible = True
+            btnRepeat.Visible = False
+            btnQuit.Visible = False
         End If
     End Sub
     Private Sub btnPlayer2_Click(sender As Object, e As EventArgs) Handles btnPlayer2.Click
@@ -103,9 +108,32 @@
             btnPlayer1.Visible = False
             btnPlayer2.Enabled = False
             btnPlayer2.Visible = False
+            btnRepeat.Visible = True
+            btnQuit.Visible = True
         Else
             btnPlayer1.Enabled = True
             btnPlayer1.Visible = True
+            btnRepeat.Visible = False
+            btnQuit.Visible = False
         End If
+    End Sub
+
+    Private Sub btnRepeat_Click(sender As Object, e As EventArgs) Handles btnRepeat.Click
+        btnPlayer1.Enabled = True
+        btnPlayer1.Visible = True
+        btnPlayer2.Enabled = True
+        btnPlayer2.Visible = True
+        ' Clean game fields
+        gameFinished = False
+        intPlayer1Score = 0
+        intPlayer2Score = 0
+        lblDice.Text = ""
+        ' Hide operation buttons
+        btnRepeat.Visible = False
+        btnQuit.Visible = False
+    End Sub
+
+    Private Sub btnQuit_Click(sender As Object, e As EventArgs) Handles btnQuit.Click
+        End
     End Sub
 End Class
