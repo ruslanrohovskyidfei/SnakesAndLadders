@@ -143,7 +143,7 @@ Partial Class Form1
         Me.lblOperation.BackColor = System.Drawing.Color.Transparent
         Me.lblOperation.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblOperation.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.lblOperation.Location = New System.Drawing.Point(762, 295)
+        Me.lblOperation.Location = New System.Drawing.Point(774, 294)
         Me.lblOperation.Name = "lblOperation"
         Me.lblOperation.Size = New System.Drawing.Size(204, 86)
         Me.lblOperation.TabIndex = 1
@@ -167,7 +167,7 @@ Partial Class Form1
         Me.btnPlayer2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnPlayer2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnPlayer2.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.btnPlayer2.Location = New System.Drawing.Point(805, 435)
+        Me.btnPlayer2.Location = New System.Drawing.Point(805, 428)
         Me.btnPlayer2.Name = "btnPlayer2"
         Me.btnPlayer2.Size = New System.Drawing.Size(136, 38)
         Me.btnPlayer2.TabIndex = 1
@@ -1320,7 +1320,7 @@ Partial Class Form1
         Me.lblDice.BackColor = System.Drawing.Color.Transparent
         Me.lblDice.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDice.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.lblDice.Location = New System.Drawing.Point(762, 151)
+        Me.lblDice.Location = New System.Drawing.Point(774, 151)
         Me.lblDice.Name = "lblDice"
         Me.lblDice.Size = New System.Drawing.Size(204, 40)
         Me.lblDice.TabIndex = 94

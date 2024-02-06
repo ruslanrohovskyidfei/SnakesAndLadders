@@ -15,6 +15,7 @@
     Private Sub Game(player As Integer)
         lblDice.Text = ""
         Dim intValue As Integer = GetRandom(1, 7)
+        picDice.Visible = True
         picDice.Image = dices.Images.Item(intValue - 1)
         Dim intScore As Integer
         Dim prevScore As Integer
@@ -34,12 +35,19 @@
         If intValue <= 6 And firstAttempt = False Then
             firstAttempt = False
             Dim strCounterName As String
-
             If intScore > 0 Then
                 strCounterName = "lblPointer" + intScore.ToString
                 Me.Controls(strCounterName).Visible = False
             End If
-
+            If intPlayer1Score > 0 And intPlayer2Score > 0 And intPlayer1Score = intPlayer2Score Then
+                strCounterName = "lblPointer" + intPlayer1Score.ToString
+                If (player = 1) Then
+                    Me.Controls(strCounterName).BackgroundImage = figures.Images.Item(1)
+                Else
+                    Me.Controls(strCounterName).BackgroundImage = figures.Images.Item(0)
+                End If
+                Me.Controls(strCounterName).Visible = True
+            End If
             intScore = intScore + intValue
 
             lblOperation.Text = ""
@@ -60,7 +68,8 @@
                     lblOperation.Text = "Player " & player & " Moved from " & prevScore & " to " & intScore
                 End If
             Next
-            If intScore <= fieldLength Then
+            If intScore < fieldLength Then
+                lblDice.Text = "Player " & player & " Move"
                 strCounterName = "lblPointer" + intScore.ToString
                 If player = 1 Then
                     Me.Controls(strCounterName).BackgroundImage = figures.Images.Item(0)
@@ -73,7 +82,7 @@
                     Me.Controls(strCounterName).BackgroundImage = figures.Images.Item(2)
                 End If
                 Me.Controls(strCounterName).Visible = True
-            ElseIf intScore > fieldLength Then
+            ElseIf intScore >= fieldLength Then
                 lblDice.Text = "Player " & player & " is Winner!"
                 Me.Controls("lblPointer100").BackgroundImage = figures.Images.Item(player - 1)
                 Me.Controls("lblPointer100").Visible = True
@@ -81,17 +90,21 @@
             End If
         End If
     End Sub
+
+    Private Sub gameUpdateStatus()
+        btnPlayer1.Enabled = False
+        btnPlayer1.Visible = False
+        btnPlayer2.Enabled = False
+        btnPlayer2.Visible = False
+        btnRepeat.Visible = True
+        btnQuit.Visible = True
+    End Sub
     Private Sub btnPlayer1_Click(sender As Object, e As EventArgs) Handles btnPlayer1.Click
         btnPlayer1.Enabled = False
         btnPlayer1.Visible = False
         Game(1)
         If gameFinished Then
-            btnPlayer1.Enabled = False
-            btnPlayer1.Visible = False
-            btnPlayer2.Enabled = False
-            btnPlayer2.Visible = False
-            btnRepeat.Visible = True
-            btnQuit.Visible = True
+            gameUpdateStatus()
         Else
             btnPlayer2.Enabled = True
             btnPlayer2.Visible = True
@@ -104,12 +117,7 @@
         btnPlayer2.Visible = False
         Game(2)
         If gameFinished Then
-            btnPlayer1.Enabled = False
-            btnPlayer1.Visible = False
-            btnPlayer2.Enabled = False
-            btnPlayer2.Visible = False
-            btnRepeat.Visible = True
-            btnQuit.Visible = True
+            gameUpdateStatus()
         Else
             btnPlayer1.Enabled = True
             btnPlayer1.Visible = True
@@ -124,13 +132,22 @@
         btnPlayer2.Enabled = True
         btnPlayer2.Visible = True
         ' Clean game fields
+        If intPlayer1Score <= 100 Then
+            Me.Controls("lblPointer" + intPlayer1Score.ToString).Visible = False
+        End If
+        If intPlayer2Score <= 100 Then
+            Me.Controls("lblPointer" + intPlayer2Score.ToString).Visible = False
+        End If
+        Me.Controls("lblPointer100").Visible = False
         gameFinished = False
+        firstAttempt = True
         intPlayer1Score = 0
         intPlayer2Score = 0
         lblDice.Text = ""
         ' Hide operation buttons
         btnRepeat.Visible = False
         btnQuit.Visible = False
+        picDice.Visible = False
     End Sub
 
     Private Sub btnQuit_Click(sender As Object, e As EventArgs) Handles btnQuit.Click
