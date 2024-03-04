@@ -3,13 +3,14 @@
     Dim intPlayer2Score As Integer
     Dim gameFinished As Boolean
     Dim fieldLength As Integer = 100
+    Dim intValue As Integer
+    Dim Generator As System.Random = New System.Random()
     Dim boardMoves As String() = {
                                    "1-38", "4-14", "9-31", "21-42", "28-84", "51-67", "72-91", "80-99", '  Ladder Moves
                                    "17-7", "54-34", "62-19", "64-60", "87-36", "93-73", "95-75", "98-79" ' Snake Moves
                                  }
     Dim firstAttempt As Boolean = True
-    Public Function GetRandom(ByVal Min As Integer, ByVal Max As Integer) As Integer
-        Dim Generator As System.Random = New System.Random()
+    Private Function GetRandom(ByVal Min As Integer, ByVal Max As Integer) As Integer
         Return Generator.Next(Min, Max)
     End Function
     Private Sub Game(player As Integer)
@@ -20,7 +21,8 @@
         lblDice.Text = ""
 
         ' Get random number of Dice and show picture of dice with current number
-        Dim intValue As Integer = GetRandom(1, 7)
+        intValue = GetRandom(1, 7)
+
         picDice.Visible = True
         picDice.Image = dices.Images.Item(intValue - 1)
 
@@ -30,27 +32,29 @@
         Else
             intScore = intPlayer2Score
         End If
-
         ' Condition for checking first player who throw 6 to start game
         If intValue = 6 And firstAttempt Then
             firstAttempt = False
+            'Repeat dice for starting player
+            intValue = GetRandom(1, 7)
+            picDice.Image = dices.Images.Item(intValue - 1)
             lblDice.Text = "Player " & player & " starts with " & intValue
         ElseIf firstAttempt And intValue < 6 Then
             lblDice.Text = "Try again"
         End If
+
         ' Condition for default game
-        If intValue <= 6 And firstAttempt = False Then
-            firstAttempt = False
+        If firstAttempt = False Then
             Dim strCounterName As String
             If intScore > 0 Then
                 strCounterName = "lblPointer" + intScore.ToString
                 Me.Controls(strCounterName).Visible = False
             End If
+            ' Clean message label
+            lblOperation.Text = ""
 
             ' Counting next step
             intScore = intScore + intValue
-
-            lblOperation.Text = ""
 
             ' Checking all moves for possible equality with Snake or Ladder entry point
             For index = 0 To boardMoves.Length - 1
@@ -110,7 +114,7 @@
                     gameFinished = True
                 End If
             ElseIf intScore > fieldLength Then
-                    If player = 1 Then
+                If player = 1 Then
                     strCounterName = "lblPointer" + intPlayer1Score.ToString
                     lblOperation.Text = "You need " & fieldLength - intPlayer1Score & " on dice"
                 Else
