@@ -2,6 +2,7 @@
     Dim intPlayer1Score As Integer
     Dim intPlayer2Score As Integer
     Dim gameFinished As Boolean
+    Dim prevScore As Integer
     Dim fieldLength As Integer = 100
     Dim boardMoves As String() = {
                                    "1-38", "4-14", "9-31", "21-42", "28-84", "51-67", "72-91", "80-99", '  Ladder Moves
@@ -14,7 +15,6 @@
     End Function
     Private Sub Game(player As Integer)
         Dim intScore As Integer
-        Dim prevScore As Integer
 
         ' Clean message label
         lblDice.Text = ""
@@ -62,23 +62,9 @@
 
             lblOperation.Text = ""
 
-            ' Checking all moves for possible equality
-            For index = 0 To boardMoves.Length - 1
-                ' Navigating on array
-                Dim line As String = boardMoves(index).ToString()
-                ' Splitting line which we choosen by index with separator "-"
-                Dim lineArray As String() = line.Split("-")
-                ' Saving current position for condition below
-                Dim currentItem = Integer.Parse(lineArray(0))
-                ' Condition to check equality of current board place and array place
-                If intScore = currentItem Then
-                    'Saving previous score for Moving message
-                    prevScore = intScore
-                    'Saving new score for movement
-                    intScore = Integer.Parse(lineArray(1))
-                    lblOperation.Text = "Player " & player & " Moved from " & prevScore & " to " & intScore
-                End If
-            Next
+            ' Checking all moves for possible equality with Snake or Ladder entry point
+            snakeAndLadders(intScore, player)
+
             ' If game still on going move our figure's
             If intScore < fieldLength Then
                 lblDice.Text = "Player " & player & " Move"
@@ -94,9 +80,16 @@
                     Me.Controls(strCounterName).BackgroundImage = figures.Images.Item(2)
                 End If
                 Me.Controls(strCounterName).Visible = True
-
+            ElseIf intScore > fieldLength Then
+                If player = 1 Then
+                    strCounterName = "lblPointer" + intPlayer1Score.ToString
+                Else
+                    strCounterName = "lblPointer" + intPlayer2Score.ToString
+                End If
+                lblDice.Text = "Player " & player & " Stay"
+                Me.Controls(strCounterName).Visible = True
                 ' If our score 100 or out of order we flash screen for Winner
-            ElseIf intScore >= fieldLength Then
+            ElseIf intScore = fieldLength Then
                 lblDice.Text = "Player " & player & " is Winner!"
                 Me.Controls("lblPointer100").BackgroundImage = figures.Images.Item(player - 1)
                 Me.Controls("lblPointer100").Visible = True
@@ -114,7 +107,24 @@
         btnRepeat.Visible = True
         btnQuit.Visible = True
     End Sub
-
+    Private Sub snakeAndLadders(intScore As Integer, player As Integer)
+        For index = 0 To boardMoves.Length - 1
+            ' Navigating on array
+            Dim line As String = boardMoves(index).ToString()
+            ' Splitting line which we choosen by index with separator "-"
+            Dim lineArray As String() = line.Split("-")
+            ' Saving current position for condition below
+            Dim currentItem = Integer.Parse(lineArray(0))
+            ' Condition to check equality of current board place and array place
+            If intScore = currentItem Then
+                'Saving previous score for Moving message
+                prevScore = intScore
+                'Saving new score for movement
+                intScore = Integer.Parse(lineArray(1))
+                lblOperation.Text = "Player " & player & " Moved from " & prevScore & " to " & intScore
+            End If
+        Next
+    End Sub
     ' Click event for Player1 button
     Private Sub btnPlayer1_Click(sender As Object, e As EventArgs) Handles btnPlayer1.Click
         btnPlayer1.Enabled = False
