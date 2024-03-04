@@ -2,7 +2,6 @@
     Dim intPlayer1Score As Integer
     Dim intPlayer2Score As Integer
     Dim gameFinished As Boolean
-    Dim prevScore As Integer
     Dim fieldLength As Integer = 100
     Dim boardMoves As String() = {
                                    "1-38", "4-14", "9-31", "21-42", "28-84", "51-67", "72-91", "80-99", '  Ladder Moves
@@ -15,6 +14,7 @@
     End Function
     Private Sub Game(player As Integer)
         Dim intScore As Integer
+        Dim prevScore As Integer
 
         ' Clean message label
         lblDice.Text = ""
@@ -46,16 +46,6 @@
                 strCounterName = "lblPointer" + intScore.ToString
                 Me.Controls(strCounterName).Visible = False
             End If
-            ' If was spared point with both players, left behind player which moving is next
-            If intPlayer1Score > 0 And intPlayer2Score > 0 And intPlayer1Score = intPlayer2Score Then
-                strCounterName = "lblPointer" + intPlayer1Score.ToString
-                If (player = 1) Then
-                    Me.Controls(strCounterName).BackgroundImage = figures.Images.Item(1)
-                Else
-                    Me.Controls(strCounterName).BackgroundImage = figures.Images.Item(0)
-                End If
-                Me.Controls(strCounterName).Visible = True
-            End If
 
             ' Counting next step
             intScore = intScore + intValue
@@ -63,10 +53,35 @@
             lblOperation.Text = ""
 
             ' Checking all moves for possible equality with Snake or Ladder entry point
-            snakeAndLadders(intScore, player)
+            For index = 0 To boardMoves.Length - 1
+                ' Navigating on array
+                Dim line As String = boardMoves(index).ToString()
+                ' Splitting line which we choosen by index with separator "-"
+                Dim lineArray As String() = line.Split("-")
+                ' Saving current position for condition below
+                Dim currentItem = Integer.Parse(lineArray(0))
+                ' Condition to check equality of current board place and array place
+                If intScore = currentItem Then
+                    'Saving previous score for Moving message
+                    prevScore = intScore
+                    'Saving new score for movement
+                    intScore = Integer.Parse(lineArray(1))
+                    lblOperation.Text = "Player " & player & " Moved from " & prevScore & " to " & intScore
+                End If
+            Next
 
             ' If game still on going move our figure's
-            If intScore < fieldLength Then
+            If intScore <= fieldLength Then
+                ' If was spared point with both players, left behind player which moving is next
+                If intPlayer1Score > 0 And intPlayer2Score > 0 And intPlayer1Score = intPlayer2Score Then
+                    strCounterName = "lblPointer" + intPlayer1Score.ToString
+                    If (player = 1) Then
+                        Me.Controls(strCounterName).BackgroundImage = figures.Images.Item(1)
+                    Else
+                        Me.Controls(strCounterName).BackgroundImage = figures.Images.Item(0)
+                    End If
+                    Me.Controls(strCounterName).Visible = True
+                End If
                 lblDice.Text = "Player " & player & " Move"
                 strCounterName = "lblPointer" + intScore.ToString
                 If player = 1 Then
@@ -80,20 +95,31 @@
                     Me.Controls(strCounterName).BackgroundImage = figures.Images.Item(2)
                 End If
                 Me.Controls(strCounterName).Visible = True
+                'If someone come's to end point
+                If intScore = fieldLength Then
+                    lblDice.Text = "Player " & player & " is Winner!"
+                    strCounterName = "lblPointer100"
+                    Me.Controls(strCounterName).Visible = True
+                    If player = 1 Then
+                        strCounterName = "lblPointer" + intPlayer2Score.ToString
+                        Me.Controls(strCounterName).Visible = True
+                    Else
+                        strCounterName = "lblPointer" + intPlayer1Score.ToString
+                        Me.Controls(strCounterName).Visible = True
+                    End If
+                    gameFinished = True
+                End If
             ElseIf intScore > fieldLength Then
-                If player = 1 Then
+                    If player = 1 Then
                     strCounterName = "lblPointer" + intPlayer1Score.ToString
+                    lblOperation.Text = "You need " & fieldLength - intPlayer1Score & " on dice"
                 Else
                     strCounterName = "lblPointer" + intPlayer2Score.ToString
+                    lblOperation.Text = "You need " & fieldLength - intPlayer2Score & " on dice"
                 End If
                 lblDice.Text = "Player " & player & " Stay"
                 Me.Controls(strCounterName).Visible = True
                 ' If our score 100 or out of order we flash screen for Winner
-            ElseIf intScore = fieldLength Then
-                lblDice.Text = "Player " & player & " is Winner!"
-                Me.Controls("lblPointer100").BackgroundImage = figures.Images.Item(player - 1)
-                Me.Controls("lblPointer100").Visible = True
-                gameFinished = True
             End If
         End If
     End Sub
@@ -106,24 +132,6 @@
         btnPlayer2.Visible = False
         btnRepeat.Visible = True
         btnQuit.Visible = True
-    End Sub
-    Private Sub snakeAndLadders(intScore As Integer, player As Integer)
-        For index = 0 To boardMoves.Length - 1
-            ' Navigating on array
-            Dim line As String = boardMoves(index).ToString()
-            ' Splitting line which we choosen by index with separator "-"
-            Dim lineArray As String() = line.Split("-")
-            ' Saving current position for condition below
-            Dim currentItem = Integer.Parse(lineArray(0))
-            ' Condition to check equality of current board place and array place
-            If intScore = currentItem Then
-                'Saving previous score for Moving message
-                prevScore = intScore
-                'Saving new score for movement
-                intScore = Integer.Parse(lineArray(1))
-                lblOperation.Text = "Player " & player & " Moved from " & prevScore & " to " & intScore
-            End If
-        Next
     End Sub
     ' Click event for Player1 button
     Private Sub btnPlayer1_Click(sender As Object, e As EventArgs) Handles btnPlayer1.Click
