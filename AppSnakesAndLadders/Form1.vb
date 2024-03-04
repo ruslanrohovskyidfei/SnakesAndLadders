@@ -13,6 +13,12 @@
     Private Function GetRandom(ByVal Min As Integer, ByVal Max As Integer) As Integer
         Return Generator.Next(Min, Max)
     End Function
+    Private Sub wait(ByVal seconds As Integer)
+        For i As Integer = 0 To seconds * 100
+            System.Threading.Thread.Sleep(10)
+            Application.DoEvents()
+        Next
+    End Sub
     Private Sub Game(player As Integer)
         Dim intScore As Integer
         Dim prevScore As Integer
@@ -34,7 +40,9 @@
         End If
         ' Condition for checking first player who throw 6 to start game
         If intValue = 6 And firstAttempt Then
+            lblDice.Text = "Player " & player & " got " & intValue
             firstAttempt = False
+            wait(0.8)
             'Repeat dice for starting player
             intValue = GetRandom(1, 7)
             picDice.Image = dices.Images.Item(intValue - 1)
@@ -42,7 +50,6 @@
         ElseIf firstAttempt And intValue < 6 Then
             lblDice.Text = "Try again"
         End If
-
         ' Condition for default game
         If firstAttempt = False Then
             Dim strCounterName As String
@@ -55,7 +62,6 @@
 
             ' Counting next step
             intScore = intScore + intValue
-
             ' Checking all moves for possible equality with Snake or Ladder entry point
             For index = 0 To boardMoves.Length - 1
                 ' Navigating on array
@@ -73,7 +79,6 @@
                     lblOperation.Text = "Player " & player & " Moved from " & prevScore & " to " & intScore
                 End If
             Next
-
             ' If game still on going move our figure's
             If intScore <= fieldLength Then
                 ' If was spared point with both players, left behind player which moving is next
@@ -141,12 +146,14 @@
     Private Sub btnPlayer1_Click(sender As Object, e As EventArgs) Handles btnPlayer1.Click
         btnPlayer1.Enabled = False
         btnPlayer1.Visible = False
+        buttonFigure1.Visible = False
         Game(1)
         If gameFinished Then
             gameUpdateStatus()
         Else
             btnPlayer2.Enabled = True
             btnPlayer2.Visible = True
+            buttonFigure2.Visible = True
             btnRepeat.Visible = False
             btnQuit.Visible = False
         End If
@@ -156,12 +163,14 @@
     Private Sub btnPlayer2_Click(sender As Object, e As EventArgs) Handles btnPlayer2.Click
         btnPlayer2.Enabled = False
         btnPlayer2.Visible = False
+        buttonFigure2.Visible = False
         Game(2)
         If gameFinished Then
             gameUpdateStatus()
         Else
             btnPlayer1.Enabled = True
             btnPlayer1.Visible = True
+            buttonFigure1.Visible = True
             btnRepeat.Visible = False
             btnQuit.Visible = False
         End If
@@ -175,6 +184,8 @@
         btnPlayer1.Visible = True
         btnPlayer2.Enabled = True
         btnPlayer2.Visible = True
+        buttonFigure1.Visible = True
+        buttonFigure2.Visible = True
 
         ' Clean game fields
         If intPlayer1Score <= 100 Then
