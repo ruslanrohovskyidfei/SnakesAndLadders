@@ -125,5 +125,11 @@
   <ItemGroup>
     <None Include="images\LargeGameBoard.jpeg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\batman-small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\superman-small.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
