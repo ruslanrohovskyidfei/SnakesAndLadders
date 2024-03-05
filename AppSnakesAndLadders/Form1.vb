@@ -1,6 +1,6 @@
 ﻿Public Class Form1
-    Dim intPlayer1Score As Integer
-    Dim intPlayer2Score As Integer
+    Dim intPlayer1Score As Integer = 1
+    Dim intPlayer2Score As Integer = 1
     Dim gameFinished As Boolean
     Dim fieldLength As Integer = 100
     Dim intValue As Integer
@@ -13,7 +13,7 @@
     Private Function GetRandom(ByVal Min As Integer, ByVal Max As Integer) As Integer
         Return Generator.Next(Min, Max)
     End Function
-    Private Sub wait(ByVal seconds As Integer)
+    Private Sub Wait(ByVal seconds As Integer)
         For i As Integer = 0 To seconds * 100
             System.Threading.Thread.Sleep(10)
             Application.DoEvents()
@@ -42,7 +42,7 @@
         If intValue = 6 And firstAttempt Then
             lblDice.Text = "Player " & player & " got " & intValue
             firstAttempt = False
-            wait(0.8)
+            Wait(0.8)
             'Repeat dice for starting player
             intValue = GetRandom(1, 7)
             picDice.Image = dices.Images.Item(intValue - 1)
@@ -186,7 +186,8 @@
         btnPlayer2.Visible = True
         buttonFigure1.Visible = True
         buttonFigure2.Visible = True
-
+        Me.Controls("lblPointer1").BackgroundImage = figures.Images.Item(2)
+        Me.Controls("lblPointer1").Visible = True
         ' Clean game fields
         If intPlayer1Score <= 100 Then
             Me.Controls("lblPointer" + intPlayer1Score.ToString).Visible = False
@@ -197,8 +198,8 @@
         Me.Controls("lblPointer100").Visible = False
         gameFinished = False
         firstAttempt = True
-        intPlayer1Score = 0
-        intPlayer2Score = 0
+        intPlayer1Score = 1
+        intPlayer2Score = 1
         lblDice.Text = ""
         ' Hide operation buttons
         btnRepeat.Visible = False
@@ -209,5 +210,16 @@
     ' Click event for Quit game button
     Private Sub btnQuit_Click(sender As Object, e As EventArgs) Handles btnQuit.Click
         End
+    End Sub
+
+    Private Sub btnStart_Click(sender As Object, e As EventArgs) Handles btnStart.Click
+        Me.Controls("lblPointer1").BackgroundImage = figures.Images.Item(2)
+        Me.Controls("lblPointer1").Visible = True
+        btnStart.Visible = False
+        btnQuit.Visible = False
+        btnPlayer1.Visible = True
+        btnPlayer2.Visible = True
+        buttonFigure1.Visible = True
+        buttonFigure2.Visible = True
     End Sub
 End Class

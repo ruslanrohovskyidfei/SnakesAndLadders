@@ -136,6 +136,7 @@ Partial Class Form1
         Me.lblPointer2 = New System.Windows.Forms.Label()
         Me.lblPointer1 = New System.Windows.Forms.Label()
         Me.gameBoard = New System.Windows.Forms.PictureBox()
+        Me.btnStart = New System.Windows.Forms.Button()
         CType(Me.picDice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gameBoard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -164,6 +165,7 @@ Partial Class Form1
         Me.btnPlayer1.Text = "Player 1"
         Me.btnPlayer1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnPlayer1.UseVisualStyleBackColor = False
+        Me.btnPlayer1.Visible = False
         '
         'btnPlayer2
         '
@@ -179,6 +181,7 @@ Partial Class Form1
         Me.btnPlayer2.Text = "Player 2"
         Me.btnPlayer2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnPlayer2.UseVisualStyleBackColor = False
+        Me.btnPlayer2.Visible = False
         '
         'figures
         '
@@ -245,6 +248,7 @@ Partial Class Form1
         Me.buttonFigure2.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.buttonFigure2.Size = New System.Drawing.Size(38, 38)
         Me.buttonFigure2.TabIndex = 98
+        Me.buttonFigure2.Visible = False
         '
         'buttonFigure1
         '
@@ -255,6 +259,7 @@ Partial Class Form1
         Me.buttonFigure1.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.buttonFigure1.Size = New System.Drawing.Size(38, 38)
         Me.buttonFigure1.TabIndex = 98
+        Me.buttonFigure1.Visible = False
         '
         'picDice
         '
@@ -1378,6 +1383,19 @@ Partial Class Form1
         Me.gameBoard.TabIndex = 0
         Me.gameBoard.TabStop = False
         '
+        'btnStart
+        '
+        Me.btnStart.BackColor = System.Drawing.Color.Red
+        Me.btnStart.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnStart.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnStart.Location = New System.Drawing.Point(805, 295)
+        Me.btnStart.Name = "btnStart"
+        Me.btnStart.Size = New System.Drawing.Size(136, 44)
+        Me.btnStart.TabIndex = 99
+        Me.btnStart.Text = "Start"
+        Me.btnStart.UseVisualStyleBackColor = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1385,6 +1403,7 @@ Partial Class Form1
         Me.BackColor = System.Drawing.SystemColors.ControlDarkDark
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1050, 654)
+        Me.Controls.Add(Me.btnStart)
         Me.Controls.Add(Me.buttonFigure2)
         Me.Controls.Add(Me.buttonFigure1)
         Me.Controls.Add(Me.btnQuit)
@@ -1615,4 +1634,5 @@ Partial Class Form1
     Friend WithEvents btnQuit As Button
     Friend WithEvents buttonFigure1 As Label
     Friend WithEvents buttonFigure2 As Label
+    Friend WithEvents btnStart As Button
 End Class
