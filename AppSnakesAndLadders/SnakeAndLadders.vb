@@ -1,4 +1,4 @@
-﻿Public Class Form1
+﻿Public Class SnakeAndLadders
     Dim intPlayer1Score As Integer = 1
     Dim intPlayer2Score As Integer = 1
     Dim gameFinished As Boolean

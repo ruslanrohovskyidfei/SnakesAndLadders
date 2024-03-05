@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class SnakeAndLadders
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,7 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SnakeAndLadders))
         Me.lblOperation = New System.Windows.Forms.Label()
         Me.btnPlayer1 = New System.Windows.Forms.Button()
         Me.btnPlayer2 = New System.Windows.Forms.Button()
@@ -1396,7 +1396,7 @@ Partial Class Form1
         Me.btnStart.Text = "Start"
         Me.btnStart.UseVisualStyleBackColor = False
         '
-        'Form1
+        'SnakeAndLadders
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -1516,7 +1516,7 @@ Partial Class Form1
         Me.Controls.Add(Me.gameBoard)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "Form1"
+        Me.Name = "SnakeAndLadders"
         Me.Text = "Snakes & Ladders - Board game"
         CType(Me.picDice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gameBoard, System.ComponentModel.ISupportInitialize).EndInit()
