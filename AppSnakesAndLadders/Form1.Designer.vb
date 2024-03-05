@@ -1515,6 +1515,7 @@ Partial Class Form1
         Me.Controls.Add(Me.lblOperation)
         Me.Controls.Add(Me.gameBoard)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form1"
         Me.Text = "Snakes & Ladders - Board game"
         CType(Me.picDice, System.ComponentModel.ISupportInitialize).EndInit()
