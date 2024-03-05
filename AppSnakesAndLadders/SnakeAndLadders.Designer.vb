@@ -146,7 +146,7 @@ Partial Class SnakeAndLadders
         Me.lblOperation.BackColor = System.Drawing.Color.Transparent
         Me.lblOperation.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblOperation.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.lblOperation.Location = New System.Drawing.Point(774, 294)
+        Me.lblOperation.Location = New System.Drawing.Point(760, 283)
         Me.lblOperation.Name = "lblOperation"
         Me.lblOperation.Size = New System.Drawing.Size(204, 86)
         Me.lblOperation.TabIndex = 1
@@ -157,12 +157,12 @@ Partial Class SnakeAndLadders
         Me.btnPlayer1.BackColor = System.Drawing.Color.Yellow
         Me.btnPlayer1.Cursor = System.Windows.Forms.Cursors.Default
         Me.btnPlayer1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnPlayer1.Location = New System.Drawing.Point(806, 372)
+        Me.btnPlayer1.Location = New System.Drawing.Point(783, 372)
         Me.btnPlayer1.Name = "btnPlayer1"
         Me.btnPlayer1.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.btnPlayer1.Size = New System.Drawing.Size(136, 46)
+        Me.btnPlayer1.Size = New System.Drawing.Size(154, 46)
         Me.btnPlayer1.TabIndex = 2
-        Me.btnPlayer1.Text = "Player 1"
+        Me.btnPlayer1.Text = "Player 1 ( A )"
         Me.btnPlayer1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnPlayer1.UseVisualStyleBackColor = False
         Me.btnPlayer1.Visible = False
@@ -173,12 +173,12 @@ Partial Class SnakeAndLadders
         Me.btnPlayer2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnPlayer2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnPlayer2.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.btnPlayer2.Location = New System.Drawing.Point(805, 428)
+        Me.btnPlayer2.Location = New System.Drawing.Point(782, 428)
         Me.btnPlayer2.Name = "btnPlayer2"
         Me.btnPlayer2.Padding = New System.Windows.Forms.Padding(0, 0, 10, 0)
-        Me.btnPlayer2.Size = New System.Drawing.Size(136, 46)
+        Me.btnPlayer2.Size = New System.Drawing.Size(155, 46)
         Me.btnPlayer2.TabIndex = 1
-        Me.btnPlayer2.Text = "Player 2"
+        Me.btnPlayer2.Text = "Player 2 ( L )"
         Me.btnPlayer2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnPlayer2.UseVisualStyleBackColor = False
         Me.btnPlayer2.Visible = False
@@ -207,7 +207,7 @@ Partial Class SnakeAndLadders
         Me.lblDice.BackColor = System.Drawing.Color.Transparent
         Me.lblDice.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDice.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.lblDice.Location = New System.Drawing.Point(774, 151)
+        Me.lblDice.Location = New System.Drawing.Point(751, 151)
         Me.lblDice.Name = "lblDice"
         Me.lblDice.Size = New System.Drawing.Size(204, 40)
         Me.lblDice.TabIndex = 94
@@ -218,32 +218,32 @@ Partial Class SnakeAndLadders
         Me.btnRepeat.BackColor = System.Drawing.Color.Yellow
         Me.btnRepeat.Cursor = System.Windows.Forms.Cursors.Default
         Me.btnRepeat.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRepeat.Location = New System.Drawing.Point(805, 295)
+        Me.btnRepeat.Location = New System.Drawing.Point(782, 295)
         Me.btnRepeat.Name = "btnRepeat"
-        Me.btnRepeat.Size = New System.Drawing.Size(136, 44)
+        Me.btnRepeat.Size = New System.Drawing.Size(155, 44)
         Me.btnRepeat.TabIndex = 96
-        Me.btnRepeat.Text = "Repeat?"
+        Me.btnRepeat.Text = "Repeat ( R )"
         Me.btnRepeat.UseVisualStyleBackColor = False
         Me.btnRepeat.Visible = False
         '
         'btnQuit
         '
-        Me.btnQuit.BackColor = System.Drawing.Color.Red
+        Me.btnQuit.BackColor = System.Drawing.Color.Yellow
         Me.btnQuit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnQuit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnQuit.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.btnQuit.Location = New System.Drawing.Point(805, 575)
+        Me.btnQuit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.btnQuit.Location = New System.Drawing.Point(782, 575)
         Me.btnQuit.Name = "btnQuit"
-        Me.btnQuit.Size = New System.Drawing.Size(136, 44)
+        Me.btnQuit.Size = New System.Drawing.Size(155, 44)
         Me.btnQuit.TabIndex = 97
-        Me.btnQuit.Text = "Quit"
+        Me.btnQuit.Text = "Quit ( Q )"
         Me.btnQuit.UseVisualStyleBackColor = False
         '
         'buttonFigure2
         '
         Me.buttonFigure2.BackColor = System.Drawing.Color.Red
         Me.buttonFigure2.Image = Global.AppSnakesAndLadders.My.Resources.Resources.superman_small
-        Me.buttonFigure2.Location = New System.Drawing.Point(812, 432)
+        Me.buttonFigure2.Location = New System.Drawing.Point(789, 432)
         Me.buttonFigure2.Name = "buttonFigure2"
         Me.buttonFigure2.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.buttonFigure2.Size = New System.Drawing.Size(38, 38)
@@ -254,7 +254,7 @@ Partial Class SnakeAndLadders
         '
         Me.buttonFigure1.BackColor = System.Drawing.Color.Yellow
         Me.buttonFigure1.Image = Global.AppSnakesAndLadders.My.Resources.Resources.batman_small
-        Me.buttonFigure1.Location = New System.Drawing.Point(901, 376)
+        Me.buttonFigure1.Location = New System.Drawing.Point(895, 376)
         Me.buttonFigure1.Name = "buttonFigure1"
         Me.buttonFigure1.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.buttonFigure1.Size = New System.Drawing.Size(38, 38)
@@ -264,7 +264,7 @@ Partial Class SnakeAndLadders
         'picDice
         '
         Me.picDice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.picDice.Location = New System.Drawing.Point(851, 213)
+        Me.picDice.Location = New System.Drawing.Point(834, 213)
         Me.picDice.Name = "picDice"
         Me.picDice.Size = New System.Drawing.Size(40, 40)
         Me.picDice.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1389,11 +1389,11 @@ Partial Class SnakeAndLadders
         Me.btnStart.Cursor = System.Windows.Forms.Cursors.Default
         Me.btnStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnStart.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnStart.Location = New System.Drawing.Point(805, 295)
+        Me.btnStart.Location = New System.Drawing.Point(782, 295)
         Me.btnStart.Name = "btnStart"
-        Me.btnStart.Size = New System.Drawing.Size(136, 44)
+        Me.btnStart.Size = New System.Drawing.Size(155, 44)
         Me.btnStart.TabIndex = 99
-        Me.btnStart.Text = "Start"
+        Me.btnStart.Text = "Start ( S )"
         Me.btnStart.UseVisualStyleBackColor = False
         '
         'SnakeAndLadders
@@ -1512,10 +1512,11 @@ Partial Class SnakeAndLadders
         Me.Controls.Add(Me.lblPointer1)
         Me.Controls.Add(Me.btnPlayer2)
         Me.Controls.Add(Me.btnPlayer1)
-        Me.Controls.Add(Me.lblOperation)
         Me.Controls.Add(Me.gameBoard)
+        Me.Controls.Add(Me.lblOperation)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.KeyPreview = True
         Me.Name = "SnakeAndLadders"
         Me.Text = "Snakes & Ladders - Board game"
         CType(Me.picDice, System.ComponentModel.ISupportInitialize).EndInit()

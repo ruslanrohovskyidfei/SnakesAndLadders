@@ -135,23 +135,53 @@
 
     ' Update all statuses
     Private Sub gameUpdateStatus()
-        btnPlayer1.Enabled = False
         btnPlayer1.Visible = False
-        btnPlayer2.Enabled = False
         btnPlayer2.Visible = False
         btnRepeat.Visible = True
         btnQuit.Visible = True
     End Sub
+    'Keyboard KeyPress event for Player1 and Player 2
+    Private Sub Game_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles MyBase.KeyPress
+
+        'Player 1 keys event
+        If e.KeyChar = "a" Or e.KeyChar = "A" Then
+            If btnPlayer1.Visible Then
+                btnPlayer1_Click(btnPlayer1, New EventArgs())
+            End If
+        End If
+        'Player 2 keys event
+        If e.KeyChar = "l" Or e.KeyChar = "L" Then
+            If btnPlayer2.Visible Then
+                btnPlayer2_Click(btnPlayer2, New EventArgs())
+            End If
+        End If
+        'Start keys event
+        If e.KeyChar = "s" Or e.KeyChar = "S" Then
+            If btnStart.Visible Then
+                btnStart_Click(btnStart, New EventArgs())
+            End If
+        End If
+        'Repeat game keys event
+        If e.KeyChar = "r" Or e.KeyChar = "R" Then
+            If btnRepeat.Visible Then
+                btnRepeat_Click(btnRepeat, New EventArgs())
+            End If
+        End If
+        'Quit keys event
+        If e.KeyChar = "q" Or e.KeyChar = "Q" Then
+            If btnQuit.Visible Then
+                btnQuit_Click(btnQuit, New EventArgs())
+            End If
+        End If
+    End Sub
     ' Click event for Player1 button
     Private Sub btnPlayer1_Click(sender As Object, e As EventArgs) Handles btnPlayer1.Click
-        btnPlayer1.Enabled = False
         btnPlayer1.Visible = False
         buttonFigure1.Visible = False
         Game(1)
         If gameFinished Then
             gameUpdateStatus()
         Else
-            btnPlayer2.Enabled = True
             btnPlayer2.Visible = True
             buttonFigure2.Visible = True
             btnRepeat.Visible = False
@@ -161,14 +191,12 @@
 
     ' Click event for Player2 button
     Private Sub btnPlayer2_Click(sender As Object, e As EventArgs) Handles btnPlayer2.Click
-        btnPlayer2.Enabled = False
         btnPlayer2.Visible = False
         buttonFigure2.Visible = False
         Game(2)
         If gameFinished Then
             gameUpdateStatus()
         Else
-            btnPlayer1.Enabled = True
             btnPlayer1.Visible = True
             buttonFigure1.Visible = True
             btnRepeat.Visible = False
@@ -180,9 +208,7 @@
     ' Click event for Repeat game button
     Private Sub btnRepeat_Click(sender As Object, e As EventArgs) Handles btnRepeat.Click
         ' Show Player buttons again
-        btnPlayer1.Enabled = True
         btnPlayer1.Visible = True
-        btnPlayer2.Enabled = True
         btnPlayer2.Visible = True
         buttonFigure1.Visible = True
         buttonFigure2.Visible = True
@@ -216,6 +242,7 @@
         Me.Controls("lblPointer1").BackgroundImage = figures.Images.Item(2)
         Me.Controls("lblPointer1").Visible = True
         btnStart.Visible = False
+        btnRepeat.Visible = False
         btnQuit.Visible = False
         btnPlayer1.Visible = True
         btnPlayer2.Visible = True
